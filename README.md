@@ -112,7 +112,7 @@ cd AGRI-SMART
 ```bash
 cd agri-smart-client
 npm install
-```
+
 
 Create `agri-smart-client/.env`:
 ```env
