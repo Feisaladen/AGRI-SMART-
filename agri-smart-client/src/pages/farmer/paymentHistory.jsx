@@ -5,10 +5,10 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import FarmerSidebar from '../../components/FarmerSidebar'
 import Topbar from '../../components/Topbar'
-import { DashboardSkeleton } from '../../components/Skeleton'
+import { ListSkeleton } from '../../components/Skeleton'
 
 const STATUS_STYLES = {
-  completed: 'bg-emerald-100 text-emerald-700 ring-emerald-200',
+  completed: 'bg-leaf-100 text-leaf-700 ring-leaf-200',
   pending: 'bg-amber-100 text-amber-700 ring-amber-200',
   failed: 'bg-rose-100 text-rose-700 ring-rose-200'
 }
@@ -50,12 +50,12 @@ const PaymentHistory = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-stone-100">
+    <div className="flex min-h-screen bg-cream">
       <FarmerSidebar dashboard={{}} />
       <div className="flex flex-1 flex-col">
         <Topbar title="Payment History" />
         <main className="flex-1 overflow-y-auto px-4 py-6 pb-24 sm:px-6 lg:px-8 lg:pb-8">
-          <div className="mx-auto max-w-5xl space-y-6">
+          <div className="mx-auto max-w-5xl animate-rise space-y-6">
 
             {/* Header */}
             <div>
@@ -65,7 +65,7 @@ const PaymentHistory = () => {
 
             {/* Stat Cards */}
             <section className="grid gap-4 sm:grid-cols-3">
-              <div className="rounded-2xl border-l-4 border-emerald-500 bg-white p-6 shadow-sm">
+              <div className="rounded-2xl border-l-4 border-leaf-500 bg-white p-6 shadow-sm">
                 <p className="text-sm font-medium text-stone-500">Total Earnings</p>
                 <p className="mt-3 text-3xl font-semibold text-stone-900">KSh {Number(totalEarnings).toLocaleString()}</p>
                 <p className="mt-1 text-xs text-stone-400">From completed payments</p>
@@ -100,7 +100,7 @@ const PaymentHistory = () => {
               ))}
             </div>
 
-            {loading ? <DashboardSkeleton /> : filtered.length === 0 ? (
+            {loading ? <ListSkeleton /> : filtered.length === 0 ? (
               <div className="rounded-2xl border border-dashed border-stone-200 bg-white p-16 text-center">
                 <p className="text-lg font-medium text-stone-700">No payments found</p>
                 <p className="mt-2 text-sm text-stone-400">Payments will appear here once buyers complete orders.</p>

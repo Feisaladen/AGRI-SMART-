@@ -3,11 +3,12 @@ import { useUser } from '@clerk/clerk-react'
 import { useNavigate } from 'react-router-dom'
 import axios from '../../api/axios'
 import BuyerSidebar from '../../components/BuyerSidebar'
+import { ListSkeleton } from '../../components/Skeleton'
 
 const STATUS_STYLES = {
   pending: 'bg-amber-100 text-amber-800 ring-amber-200',
   confirmed: 'bg-sky-100 text-sky-800 ring-sky-200',
-  delivered: 'bg-emerald-100 text-emerald-800 ring-emerald-200',
+  delivered: 'bg-leaf-100 text-leaf-800 ring-leaf-200',
   cancelled: 'bg-rose-100 text-rose-800 ring-rose-200'
 }
 
@@ -26,37 +27,41 @@ const Orders = () => {
   }, [user?.id])
 
   return (
-    <div className="flex min-h-screen bg-stone-100">
+    <div className="flex min-h-screen bg-cream">
       <BuyerSidebar />
       <main className="flex-1 overflow-y-auto px-4 py-6 pb-24 sm:px-6 lg:px-8 lg:pb-8">
-        <div className="mx-auto max-w-4xl space-y-6">
+        <div className="mx-auto max-w-4xl animate-rise space-y-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h1 className="text-2xl font-semibold text-stone-900">My Orders 📦</h1>
+              <h1 className="text-2xl font-semibold text-stone-900">My Orders</h1>
               <p className="mt-1 text-sm text-stone-500">Track all your purchases in one place.</p>
             </div>
             <button
               type="button"
               onClick={() => navigate('/buyer/marketplace')}
-              className="rounded-full bg-emerald-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-emerald-800"
+              className="rounded-full bg-leaf-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-leaf-800"
             >
               Shop Again
             </button>
           </div>
 
           {loading ? (
-            <p className="text-stone-500">Loading orders...</p>
+            <ListSkeleton />
           ) : orders.length === 0 ? (
             <div className="rounded-2xl border border-dashed border-stone-200 bg-white p-10 text-center text-sm text-stone-400">
               No orders yet. Start shopping from the marketplace!
             </div>
           ) : (
             <div className="space-y-4">
-              {orders.map((order) => {
+              {orders.map((order, index) => {
                 const quantity = order.quantity ?? order.quanitity ?? 0
                 const statusStyle = STATUS_STYLES[order.status] || 'bg-stone-100 text-stone-700 ring-stone-200'
                 return (
-                  <div key={order._id} className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+                  <div
+                    key={order._id}
+                    style={{ animationDelay: `${Math.min(index, 8) * 60}ms` }}
+                    className="card-lift animate-rise rounded-2xl border border-stone-200 bg-white p-6 shadow-sm"
+                  >
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div>
                         <p className="text-lg font-semibold text-stone-900">{order.product?.name || 'Product'}</p>

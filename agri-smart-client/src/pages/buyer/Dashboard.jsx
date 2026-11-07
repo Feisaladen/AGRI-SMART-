@@ -6,12 +6,14 @@ import toast from 'react-hot-toast'
 import { useCart } from '../../../context/CartContext'
 import BuyerSidebar from '../../components/BuyerSidebar'
 import Topbar from '../../components/Topbar'
+import CountUp from '../../components/CountUp'
+import { Box, Cart, Leaf, Wallet } from '../../components/Icons'
 import { DashboardSkeleton } from '../../components/Skeleton'
 
 const STATUS_STYLES = {
   pending: 'bg-amber-100 text-amber-800 ring-amber-200',
   confirmed: 'bg-sky-100 text-sky-800 ring-sky-200',
-  delivered: 'bg-emerald-100 text-emerald-800 ring-emerald-200',
+  delivered: 'bg-leaf-100 text-leaf-800 ring-leaf-200',
   cancelled: 'bg-rose-100 text-rose-800 ring-rose-200'
 }
 
@@ -35,7 +37,7 @@ const Dashboard = () => {
   const recentOrders = orders.slice(0, 3)
 
   return (
-    <div className="flex min-h-screen bg-stone-100">
+    <div className="flex min-h-screen bg-cream">
       <BuyerSidebar />
 
       <div className="flex flex-1 flex-col">
@@ -46,41 +48,42 @@ const Dashboard = () => {
         />
 
         <main className="flex-1 overflow-y-auto px-4 py-6 pb-24 sm:px-6 lg:px-8 lg:pb-8">
-          <div className="mx-auto max-w-5xl space-y-6">
+          <div className="mx-auto max-w-5xl animate-rise space-y-6">
 
             {loading ? <DashboardSkeleton /> : (
               <>
                 {/* Welcome Banner */}
-                <div className="rounded-2xl bg-emerald-700 px-6 py-5 text-white">
-                  <p className="text-xs font-medium uppercase tracking-[0.22em] text-emerald-200">Buyer Dashboard</p>
+                <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-leaf-700 to-leaf-900 px-6 py-5 text-white">
+                  <Leaf className="absolute -right-3 -top-4 h-32 w-32 animate-sway text-white/10" />
+                  <p className="text-xs font-medium uppercase tracking-[0.22em] text-leaf-200">Buyer Dashboard</p>
                   <h1 className="mt-1 text-2xl font-semibold">Welcome back, {user?.firstName || 'there'}</h1>
-                  <p className="mt-1 text-sm text-emerald-200">Here is your shopping activity at a glance.</p>
+                  <p className="mt-1 text-sm text-leaf-200">Here is your shopping activity at a glance.</p>
                 </div>
 
                 {/* Stats */}
                 <section className="grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-2xl bg-white p-6 shadow-sm border-l-4 border-emerald-500">
+                  <div className="card-lift rounded-2xl border-l-4 border-leaf-500 bg-white p-6 shadow-sm">
                     <div className="flex items-center justify-between">
                       <p className="text-sm font-medium text-stone-500">Cart Items</p>
-                      <span className="text-xs font-medium text-slate-400">Cart</span>
+                      <span className="rounded-lg bg-leaf-50 p-1.5 text-leaf-700"><Cart className="h-4 w-4" /></span>
                     </div>
-                    <p className="mt-4 text-3xl font-semibold text-stone-900">{cartItems.length}</p>
+                    <p className="mt-4 text-3xl font-semibold text-stone-900"><CountUp value={cartItems.length} /></p>
                     <p className="mt-1 text-xs text-stone-400">Ready for checkout</p>
                   </div>
-                  <div className="rounded-2xl bg-white p-6 shadow-sm border-l-4 border-blue-500">
+                  <div className="card-lift rounded-2xl border-l-4 border-gold-500 bg-white p-6 shadow-sm">
                     <div className="flex items-center justify-between">
                       <p className="text-sm font-medium text-stone-500">Pending Orders</p>
-                      <span className="text-xs font-medium text-slate-400">Orders</span>
+                      <span className="rounded-lg bg-leaf-50 p-1.5 text-leaf-700"><Box className="h-4 w-4" /></span>
                     </div>
-                    <p className="mt-4 text-3xl font-semibold text-stone-900">{pendingOrders}</p>
+                    <p className="mt-4 text-3xl font-semibold text-stone-900"><CountUp value={pendingOrders} /></p>
                     <p className="mt-1 text-xs text-stone-400">Awaiting delivery</p>
                   </div>
-                  <div className="rounded-2xl bg-white p-6 shadow-sm border-l-4 border-amber-500">
+                  <div className="card-lift rounded-2xl border-l-4 border-leaf-800 bg-white p-6 shadow-sm">
                     <div className="flex items-center justify-between">
                       <p className="text-sm font-medium text-stone-500">Cart Total</p>
-                      <span className="text-xs font-medium text-slate-400">Total</span>
+                      <span className="rounded-lg bg-leaf-50 p-1.5 text-leaf-700"><Wallet className="h-4 w-4" /></span>
                     </div>
-                    <p className="mt-4 text-3xl font-semibold text-stone-900">KSh {Number(total).toLocaleString()}</p>
+                    <p className="mt-4 text-3xl font-semibold text-stone-900">KSh <CountUp value={total} /></p>
                     <p className="mt-1 text-xs text-stone-400">Current cart value</p>
                   </div>
                 </section>

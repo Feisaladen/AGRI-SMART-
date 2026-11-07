@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import FarmerSidebar from '../../components/FarmerSidebar'
 import Topbar from '../../components/Topbar'
-import { DashboardSkeleton } from '../../components/Skeleton'
+import { CardGridSkeleton } from '../../components/Skeleton'
 
 const ProductList = () => {
   const { user } = useUser()
@@ -51,12 +51,12 @@ const ProductList = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-stone-100">
+    <div className="flex min-h-screen bg-cream">
       <FarmerSidebar dashboard={{}} />
       <div className="flex flex-1 flex-col">
         <Topbar title="My Products" />
         <main className="flex-1 overflow-y-auto px-4 py-6 pb-24 sm:px-6 lg:px-8 lg:pb-8">
-          <div className="mx-auto max-w-5xl space-y-6">
+          <div className="mx-auto max-w-5xl animate-rise space-y-6">
 
             {/* Header */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -66,19 +66,19 @@ const ProductList = () => {
               </div>
               <button
                 onClick={() => navigate('/farmer/add-product')}
-                className="rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-emerald-700"
+                className="rounded-xl bg-leaf-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-leaf-700"
               >
                 + Add Product
               </button>
             </div>
 
-            {loading ? <DashboardSkeleton /> : products.length === 0 ? (
+            {loading ? <CardGridSkeleton /> : products.length === 0 ? (
               <div className="rounded-2xl border border-dashed border-stone-200 bg-white p-16 text-center">
                 <p className="text-lg font-medium text-stone-700">No products yet</p>
                 <p className="mt-2 text-sm text-stone-400">Add your first product to start selling on the marketplace.</p>
                 <button
                   onClick={() => navigate('/farmer/add-product')}
-                  className="mt-6 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-emerald-700"
+                  className="mt-6 rounded-xl bg-leaf-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-leaf-700"
                 >
                   Add First Product
                 </button>
@@ -87,7 +87,7 @@ const ProductList = () => {
               <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                 {products.map(product => (
                   <div key={product._id} className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition hover:shadow-md">
-                    <div className="h-36 bg-gradient-to-br from-emerald-50 to-stone-100">
+                    <div className="h-36 bg-gradient-to-br from-leaf-50 to-stone-100">
                       {product.photo
                         ? <img src={product.photo} alt={product.name} className="h-full w-full object-cover" />
                         : <div className="flex h-full items-center justify-center text-sm font-medium text-stone-400">No Image</div>
@@ -96,7 +96,7 @@ const ProductList = () => {
                     <div className="p-5">
                       <div className="flex items-start justify-between gap-2">
                         <h2 className="text-base font-semibold text-stone-900">{product.name}</h2>
-                        <span className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-medium ${product.status === 'active' ? 'bg-emerald-100 text-emerald-700' : 'bg-stone-100 text-stone-500'}`}>
+                        <span className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-medium ${product.status === 'active' ? 'bg-leaf-100 text-leaf-700' : 'bg-stone-100 text-stone-500'}`}>
                           {product.status === 'active' ? 'Active' : 'Paused'}
                         </span>
                       </div>
@@ -106,7 +106,7 @@ const ProductList = () => {
                       <div className="mt-4 flex gap-2">
                         <button
                           onClick={() => handleStatusToggle(product._id, product.status)}
-                          className={`flex-1 rounded-xl py-2 text-xs font-medium transition ${product.status === 'active' ? 'border border-stone-200 text-stone-600 hover:bg-stone-50' : 'bg-emerald-600 text-white hover:bg-emerald-700'}`}
+                          className={`flex-1 rounded-xl py-2 text-xs font-medium transition ${product.status === 'active' ? 'border border-stone-200 text-stone-600 hover:bg-stone-50' : 'bg-leaf-600 text-white hover:bg-leaf-700'}`}
                         >
                           {product.status === 'active' ? 'Pause' : 'Activate'}
                         </button>

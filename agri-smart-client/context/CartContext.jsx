@@ -25,6 +25,14 @@ export const CartProvider = ({ children }) => {
         setCartItems((prev) => prev.filter((item) => item._id !== productId))
     }
 
+    const updateQuantity = (productId, change) => {
+        setCartItems((prev) => prev.map((item) =>
+            item._id === productId
+                ? { ...item, quantity: Math.max(1, item.quantity + change) }
+                : item
+        ))
+    }
+
     const clearCart = () => {
         setCartItems([])
     }
@@ -35,7 +43,7 @@ export const CartProvider = ({ children }) => {
     )
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, total }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart, total }}>
             {children}
         </CartContext.Provider>
     )

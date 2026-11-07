@@ -49,12 +49,12 @@ const AddProduct = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-stone-100">
+    <div className="flex min-h-screen bg-cream">
       <FarmerSidebar dashboard={{}} />
       <div className="flex flex-1 flex-col">
         <Topbar title="Add Product" />
         <main className="flex-1 overflow-y-auto px-4 py-6 pb-24 sm:px-6 lg:px-8 lg:pb-8">
-          <div className="mx-auto max-w-2xl space-y-6">
+          <div className="mx-auto max-w-2xl animate-rise space-y-6">
             <div className="rounded-2xl bg-white p-8 shadow-sm">
               <h2 className="text-lg font-semibold text-stone-900">Product Details</h2>
               <p className="mt-1 text-sm text-stone-500">Fill in the details to list your product on the marketplace.</p>
@@ -62,21 +62,21 @@ const AddProduct = () => {
               <div className="mt-6 space-y-4">
                 <div>
                   <label className="text-sm font-medium text-stone-700">Product Name</label>
-                  <input name="name" onChange={handleChange} placeholder="e.g. Fresh Tomatoes" className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm outline-none focus:border-emerald-500 focus:bg-white" />
+                  <input name="name" onChange={handleChange} placeholder="e.g. Fresh Tomatoes" className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm outline-none focus:border-leaf-500 focus:bg-white" />
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <label className="text-sm font-medium text-stone-700">Price (KSh)</label>
-                    <input name="price" type="number" onChange={handleChange} placeholder="0" className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm outline-none focus:border-emerald-500 focus:bg-white" />
+                    <input name="price" type="number" onChange={handleChange} placeholder="0" className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm outline-none focus:border-leaf-500 focus:bg-white" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-stone-700">Quantity</label>
-                    <input name="quantity" type="number" onChange={handleChange} placeholder="0" className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm outline-none focus:border-emerald-500 focus:bg-white" />
+                    <input name="quantity" type="number" onChange={handleChange} placeholder="0" className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm outline-none focus:border-leaf-500 focus:bg-white" />
                   </div>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-stone-700">Unit</label>
-                  <select name="unit" onChange={handleChange} className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm outline-none focus:border-emerald-500 focus:bg-white">
+                  <select name="unit" onChange={handleChange} className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm outline-none focus:border-leaf-500 focus:bg-white">
                     <option value="">Select Unit</option>
                     <option value="kg">KG</option>
                     <option value="pieces">Pieces</option>
@@ -86,7 +86,7 @@ const AddProduct = () => {
                 </div>
                 <div>
                   <label className="text-sm font-medium text-stone-700">Description (optional)</label>
-                  <textarea name="description" onChange={handleChange} placeholder="Describe your product..." rows={3} className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm outline-none focus:border-emerald-500 focus:bg-white" />
+                  <textarea name="description" onChange={handleChange} placeholder="Describe your product..." rows={3} className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm outline-none focus:border-leaf-500 focus:bg-white" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-stone-700">Product Photo</label>
@@ -96,7 +96,7 @@ const AddProduct = () => {
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <button onClick={handleSubmit} disabled={loading} className="rounded-xl bg-emerald-700 px-6 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:bg-emerald-300">
+                <button onClick={handleSubmit} disabled={loading} className="rounded-xl bg-leaf-700 px-6 py-3 text-sm font-medium text-white transition hover:bg-leaf-800 disabled:bg-leaf-300">
                   {loading ? 'Saving...' : 'Add Product'}
                 </button>
                 <button onClick={() => navigate('/farmer/products')} className="rounded-xl border border-stone-200 px-6 py-3 text-sm font-medium text-stone-600 transition hover:bg-stone-50">

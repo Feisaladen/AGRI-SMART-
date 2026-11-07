@@ -53,10 +53,10 @@ const Checkout = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-stone-100">
+    <div className="flex min-h-screen bg-cream">
       <BuyerSidebar />
       <main className="flex-1 overflow-y-auto px-4 py-6 pb-24 sm:px-6 lg:px-8 lg:pb-8">
-        <div className="mx-auto max-w-4xl space-y-6">
+        <div className="mx-auto max-w-4xl animate-rise space-y-6">
           <div>
             <h1 className="text-2xl font-semibold text-stone-900">Checkout</h1>
             <p className="mt-1 text-sm text-stone-500">Confirm your order before placing it.</p>
@@ -68,7 +68,7 @@ const Checkout = () => {
               <button
                 type="button"
                 onClick={() => navigate('/buyer/cart')}
-                className="mt-6 rounded-full bg-emerald-700 px-5 py-3 text-sm font-medium text-white transition hover:bg-emerald-800"
+                className="mt-6 rounded-full bg-leaf-700 px-5 py-3 text-sm font-medium text-white transition hover:bg-leaf-800"
               >
                 Back to Cart
               </button>
@@ -113,13 +113,13 @@ const Checkout = () => {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="Enter M-Pesa phone number (07XXXXXXXX)"
-                    className="rounded-xl border border-emerald-500 px-4 py-3 text-sm text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-emerald-600"
+                    className="rounded-xl border border-leaf-500 px-4 py-3 text-sm text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-leaf-600"
                   />
                   <button
                     type="button"
                     onClick={handleSubmit}
                     disabled={loading}
-                    className="rounded-xl bg-emerald-700 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:bg-emerald-400"
+                    className="rounded-xl bg-leaf-700 py-3 text-sm font-medium text-white transition hover:bg-leaf-800 disabled:bg-leaf-400"
                   >
                     {loading ? 'Placing Order...' : 'Place Order'}
                   </button>

@@ -5,12 +5,12 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import FarmerSidebar from '../../components/FarmerSidebar'
 import Topbar from '../../components/Topbar'
-import { DashboardSkeleton } from '../../components/Skeleton'
+import { ListSkeleton } from '../../components/Skeleton'
 
 const STATUS_STYLES = {
   pending: 'bg-amber-100 text-amber-700 ring-amber-200',
   confirmed: 'bg-sky-100 text-sky-700 ring-sky-200',
-  delivered: 'bg-emerald-100 text-emerald-700 ring-emerald-200',
+  delivered: 'bg-leaf-100 text-leaf-700 ring-leaf-200',
   cancelled: 'bg-rose-100 text-rose-700 ring-rose-200'
 }
 
@@ -58,7 +58,7 @@ const OrderManagement = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-stone-100">
+    <div className="flex min-h-screen bg-cream">
       <FarmerSidebar dashboard={{}} />
       <div className="flex flex-1 flex-col">
         <Topbar
@@ -67,7 +67,7 @@ const OrderManagement = () => {
           notificationPath="/farmer/orders"
         />
         <main className="flex-1 overflow-y-auto px-4 py-6 pb-24 sm:px-6 lg:px-8 lg:pb-8">
-          <div className="mx-auto max-w-5xl space-y-6">
+          <div className="mx-auto max-w-5xl animate-rise space-y-6">
 
             {/* Header */}
             <div>
@@ -81,7 +81,7 @@ const OrderManagement = () => {
                 { key: 'all', label: 'All', color: 'bg-stone-900 text-white' },
                 { key: 'pending', label: 'Pending', color: 'bg-amber-100 text-amber-700' },
                 { key: 'confirmed', label: 'Confirmed', color: 'bg-sky-100 text-sky-700' },
-                { key: 'delivered', label: 'Delivered', color: 'bg-emerald-100 text-emerald-700' },
+                { key: 'delivered', label: 'Delivered', color: 'bg-leaf-100 text-leaf-700' },
                 { key: 'cancelled', label: 'Cancelled', color: 'bg-rose-100 text-rose-700' },
               ].map(tab => (
                 <button
@@ -94,7 +94,7 @@ const OrderManagement = () => {
               ))}
             </div>
 
-            {loading ? <DashboardSkeleton /> : filtered.length === 0 ? (
+            {loading ? <ListSkeleton /> : filtered.length === 0 ? (
               <div className="rounded-2xl border border-dashed border-stone-200 bg-white p-16 text-center">
                 <p className="text-lg font-medium text-stone-700">No orders found</p>
                 <p className="mt-2 text-sm text-stone-400">Orders from buyers will appear here.</p>
@@ -121,7 +121,7 @@ const OrderManagement = () => {
                       <select
                         value={order.status}
                         onChange={(e) => handleStatusUpdate(order._id, e.target.value)}
-                        className="rounded-xl border border-stone-200 bg-stone-50 px-4 py-2 text-sm font-medium text-stone-700 outline-none transition focus:border-emerald-500 focus:bg-white"
+                        className="rounded-xl border border-stone-200 bg-stone-50 px-4 py-2 text-sm font-medium text-stone-700 outline-none transition focus:border-leaf-500 focus:bg-white"
                       >
                         <option value="pending">Pending</option>
                         <option value="confirmed">Confirmed</option>
