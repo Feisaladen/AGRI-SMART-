@@ -1,0 +1,17 @@
+services:
+  server:
+    build: ./AGRI-smart-server
+    env_file: ./AGRI-smart-server/.env
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./agri-smart-client
+      args:
+        VITE_CLERK_PUBLISHABLE_KEY: ${VITE_CLERK_PUBLISHABLE_KEY}
+        VITE_API_URL: ""
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    restart: unless-stopped
